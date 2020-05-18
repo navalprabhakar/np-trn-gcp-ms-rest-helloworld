@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: np-trn-gcp-ms-rest-helloworld
+  labels:
+    app: np-trn-gcp-ms-rest-helloworld
+data:
+  application.properties: |-
+    spring.application.name=np-trn-gcp-ms-rest-helloworld
+    spring.profiles.active=k8s
+    server.port=18080
+    spring.cloud.kubernetes.reload.enabled=true 
+    management.endpoint.restart.enabled = true
+    server.compression.enabled=true
+
+

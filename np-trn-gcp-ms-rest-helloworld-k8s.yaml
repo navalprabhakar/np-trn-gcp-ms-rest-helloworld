@@ -1,0 +1,34 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: np-trn-gcp-ms-rest-helloworld
+  labels:
+    app: np-trn-gcp-ms-rest-helloworld
+spec:
+  type: NodePort
+  selector:
+    app: np-trn-gcp-ms-rest-helloworld
+  ports:
+  - protocol: TCP
+    port: 18080
+    name: http
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: np-trn-gcp-ms-rest-helloworld
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: np-trn-gcp-ms-rest-helloworld
+    spec:
+      containers:
+      - name: np-trn-gcp-ms-rest-helloworld
+        image: docker-registry.default.svc:5000/np-trn-gcp-ms-rest-helloworld
+        ports:
+        - containerPort: 18080
+ 
